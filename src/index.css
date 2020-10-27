@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  font-family: Poppins;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
