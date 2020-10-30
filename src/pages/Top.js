@@ -20,6 +20,9 @@ const Top = () => {
     }
 
     checkIfLoggedIn();
+    document.addEventListener('backToSelector', () => {
+      generateLoginRequest();
+    });
   }, []);
 
   const generateLoginRequest = async () => {
