@@ -15,7 +15,7 @@ class ProtonSDK {
     try {
       this.link = await ConnectWallet({
         linkOptions: { chainId: this.chainId, endpoints: this.endpoints },
-        transportOptions: { requestAccount: this.requestAccount },
+        transportOptions: { requestAccount: this.requestAccount, backButton: true },
         selectorOptions: { appName: this.appName, appLogo: Foobar}
       });
       const { session } = await this.link.login(this.requestAccount);
@@ -50,7 +50,7 @@ class ProtonSDK {
       try {
         this.link = await ConnectWallet({
           linkOptions: { chainId: this.chainId, endpoints: this.endpoints },
-          transportOptions: { requestAccount: this.requestAccount },
+          transportOptions: { requestAccount: this.requestAccount, backButton: true },
           selectorOptions: { appName: this.appName, appLogo: Foobar, showSelector: false }
         });
         const result = await this.link.restoreSession(this.requestAccount, savedUserAuth);
