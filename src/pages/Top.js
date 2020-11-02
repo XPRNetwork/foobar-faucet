@@ -8,7 +8,7 @@ const Top = () => {
   const [permission, setPermission] = useState('');
   const [accountData, setAccountData] = useState({});
 
-
+  /* istanbul ignore next */
   useEffect(() => {
     async function checkIfLoggedIn() {
       const { auth, accountData } = await ProtonSDK.restoreSession();
@@ -25,6 +25,7 @@ const Top = () => {
     });
   }, []);
 
+  /* istanbul ignore next */
   const generateLoginRequest = async () => {
     try {
       const { auth, accountData } = await ProtonSDK.login();
@@ -36,6 +37,7 @@ const Top = () => {
     }
   }
 
+  /* istanbul ignore next */
   const logout = async () => {
     await ProtonSDK.logout();
     setAuth('');
