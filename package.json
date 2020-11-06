@@ -47,7 +47,7 @@
       "!**/node_modules/**",
       "!**/*serviceWorker.js",
       "!**/*index.js",
-      "!**/*proton.js"
+      "!**/utils/**"
     ]
   }
 }
