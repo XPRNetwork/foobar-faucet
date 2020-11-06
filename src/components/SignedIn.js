@@ -12,7 +12,7 @@ import {
   Avatar,
   UserName,
   Message
-} from '../Styles/TopStyles';
+} from '../pages/TopStyles';
 
 const SignedIn = ({ accountData, logout }) => {
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,7 +20,6 @@ const SignedIn = ({ accountData, logout }) => {
   
   const [buttonText, setButtonText] = useState('Get tokens');
 
-  /* istanbul ignore next */
   const getTokens = (e) => {
     setErrorMessage('');
     setSuccessMessage('');
@@ -72,8 +71,8 @@ const SignedIn = ({ accountData, logout }) => {
       <Coin src='./images/coin.svg' />
 
       <Title>
-        The Foobar token is <Br styleFor="mobile" />
-        the <Br styleFor="desktop" />
+        The Foobar token is <Br for="mobile" />
+        the <Br for="desktop" />
         <FeatureText>demo token</FeatureText> for all Proton Demos{' '}
       </Title>
       <Description>
