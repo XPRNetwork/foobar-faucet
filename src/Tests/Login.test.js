@@ -7,7 +7,7 @@ const createTestProps = props => ({
   ...props,
 });
 
-describe('Account component', () => {
+describe('Login component', () => {
   let props;
 
   beforeEach(() => {
