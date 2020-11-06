@@ -4,13 +4,13 @@ import SignedIn from '../components/SignedIn';
 
 const createTestProps = (props) => ({
   accountData: {
-    avatar: 'hi',
+    avatar: '',
   },
   logout: jest.fn(),
   ...props,
 });
 
-describe('Account component', () => {
+describe('SignedIn component', () => {
   let props;
 
   beforeEach(() => {
@@ -21,8 +21,8 @@ describe('Account component', () => {
     render(<SignedIn {...props} />);
   });
 
-  it('renders without crashing', () => {
-    props.accountData.avatar = '';
+  it('renders without crashing w/ avatar', () => {
+    props.accountData.avatar = 'hi';
     render(<SignedIn {...props} />);
   });
 });
