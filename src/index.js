@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Top from './pages/Top';
-import AuthProvider from './utils/providers/AuthProvider';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <Top />
-    </AuthProvider>
+    <Top />
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -66,10 +66,10 @@ export const Coin = styled.img`
 `;
 
 export const Br = styled.br`
-  display: ${(props) => (props.styleFor === 'desktop' ? 'block' : 'none')};
+  display: ${(props) => (props.for === 'desktop' ? 'block' : 'none')};
 
   @media (max-width: 768px) {
-    display: ${(props) => (props.styleFor === 'mobile' ? 'block' : 'none')};
+    display: ${(props) => (props.for === 'mobile' ? 'block' : 'none')};
   }
 `;
 

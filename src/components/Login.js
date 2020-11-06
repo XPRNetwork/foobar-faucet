@@ -8,7 +8,7 @@ import {
   Coin,
   Header,
   Br,
-} from '../Styles/TopStyles';
+} from '../pages/TopStyles';
 
 const Login = ({ login }) => {
   return (
@@ -17,8 +17,8 @@ const Login = ({ login }) => {
       <Coin src='./images/coin.svg' />
 
       <Title>
-        The Foobar token is <Br styleFor="mobile" />
-        the <Br styleFor="desktop" />
+        The Foobar token is <Br for="mobile" />
+        the <Br for="desktop" />
         <FeatureText>demo token</FeatureText> for all Proton Demos{' '}
       </Title>
       <Description>
