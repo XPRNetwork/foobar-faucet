@@ -1,0 +1,36 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: foobar-faucet-cert
+  namespace: default
+spec:
+  secretName: foobar-faucet-cert
+  issuerRef:
+    name: foobar-faucet-issuer
+    kind: ClusterIssuer
+  commonName: foobar.protonchain.com
+  dnsNames:
+  - foobar.protonchain.com
+  acme:
+    config:
+    - http01:
+        ingress: foobar-faucet-ssl-ingress
+      domains:
+      - foobar.protonchain.com
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: foobar-faucet-issuer
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: cindy@metalpay.co
+    privateKeySecretRef:
+      name:  foobar-faucet-cert
+    http01: {}
+    solvers:
+      - selector: {}
+        http01:
+          ingress:
+            class: nginx
