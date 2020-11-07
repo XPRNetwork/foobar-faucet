@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: foobar-faucet-ssl-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: foobar-faucet-issuer
+  labels:
+    app: foobar-faucet
+spec:
+  tls:
+  - secretName: foobar-faucet-cert
+    hosts:
+    - foobar.protonchain.com
+  rules:
+  - host: foobar.protonchain.com
+    http:
+      paths:
+      - backend:
+          serviceName: foobar-faucet-backend
+          servicePort: 3000
+        path: /
