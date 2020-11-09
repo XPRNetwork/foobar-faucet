@@ -92,5 +92,4 @@ class ProtonSDK {
   };
 }
 
-const protonSDK = new ProtonSDK();
-export default protonSDK;
+export default new ProtonSDK();
