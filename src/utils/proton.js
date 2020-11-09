@@ -27,17 +27,14 @@ class ProtonSDK {
     });
     this.link = link;
     this.session = session;
-    return session;
   };
 
   login = async () => {
     try {
-      const session = await this.connect();
-      localStorage.setItem(
-        'savedUserAuth-foobar',
-        JSON.stringify(session.auth)
-      );
-      return { auth: session.auth, accountData: session.accountData[0] };
+      await this.connect();
+      const { auth, accountData } = this.session;
+      localStorage.setItem('savedUserAuth-foobar', JSON.stringify(auth));
+      return { auth, accountData: accountData[0] };
     } catch (e) {
       return e;
     }
@@ -66,11 +63,12 @@ class ProtonSDK {
     );
     if (savedUserAuth) {
       try {
-        const session = await this.connect(true, false);
-        if (session) {
+        await this.connect(true, false);
+        if (this.session) {
+          const { auth, accountData } = this.session;
           return {
-            auth: this.session.auth,
-            accountData: this.session.accountData[0],
+            auth,
+            accountData: accountData[0],
           };
         }
       } catch (e) {
