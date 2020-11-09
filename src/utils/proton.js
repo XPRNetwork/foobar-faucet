@@ -23,7 +23,11 @@ class ProtonSDK {
         requestAccount: this.requestAccount,
         backButton: true,
       },
-      selectorOptions: { appName: this.appName, appLogo: Foobar, showSelector },
+      selectorOptions: {
+        appName: this.appName,
+        appLogo: Foobar,
+        showSelector
+      },
     });
     this.link = link;
     this.session = session;
@@ -34,7 +38,10 @@ class ProtonSDK {
       await this.connect();
       const { auth, accountData } = this.session;
       localStorage.setItem('savedUserAuth-foobar', JSON.stringify(auth));
-      return { auth, accountData: accountData[0] };
+      return {
+        auth,
+        accountData: accountData[0]
+      };
     } catch (e) {
       return e;
     }
@@ -75,7 +82,13 @@ class ProtonSDK {
         return e;
       }
     }
-    return { auth: { actor: '', permission: '' }, accountData: {} };
+    return {
+      auth: {
+        actor: '',
+        permission: ''
+      },
+      accountData: {}
+    };
   };
 }
 
