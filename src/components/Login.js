@@ -12,7 +12,7 @@ import {
 
 const Login = ({ login }) => {
   return (
-    <Container>
+    <Container data-testid="login">
       <Header />
       <Coin src="./images/coin.svg" />
 

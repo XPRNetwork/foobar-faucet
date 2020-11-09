@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Container,
   Button,
@@ -12,13 +12,13 @@ import {
   Avatar,
   UserName,
   Message,
-} from '../pages/TopStyles';
+} from '../Styles/TopStyles';
 
 const SignedIn = ({ accountData, logout }) => {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const [successMessage, setSuccessMessage] = React.useState('');
 
-  const [buttonText, setButtonText] = useState('Get tokens');
+  const [buttonText, setButtonText] = React.useState('Get tokens');
 
   const getTokens = (e) => {
     setErrorMessage('');
@@ -54,7 +54,6 @@ const SignedIn = ({ accountData, logout }) => {
               `${response.message}: ${response.error.details.message}`
             );
           } else {
-            setButtonText('Get tokens');
             setErrorMessage(`Internal Service Error: Please try again later.`);
           }
         });
@@ -62,7 +61,7 @@ const SignedIn = ({ accountData, logout }) => {
   };
 
   return (
-    <Container>
+    <Container data-testid="signedIn">
       <Header>
         <AvatarContainer alt="Logout" onClick={logout}>
           <Avatar
@@ -89,7 +88,9 @@ const SignedIn = ({ accountData, logout }) => {
         tokens can be used in multiple demo apps. New tokens available every
         hour.
       </Description>
-      <Button onClick={getTokens}>{buttonText}</Button>
+      <Button data-testid="tokenButton" onClick={getTokens}>
+        {buttonText}
+      </Button>
       <Message className="error">{errorMessage}</Message>
       <Message className="success">{successMessage}</Message>
     </Container>
