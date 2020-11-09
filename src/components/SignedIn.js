@@ -11,13 +11,13 @@ import {
   AvatarContainer,
   Avatar,
   UserName,
-  Message
+  Message,
 } from '../pages/TopStyles';
 
 const SignedIn = ({ accountData, logout }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  
+
   const [buttonText, setButtonText] = useState('Get tokens');
 
   const getTokens = (e) => {
@@ -25,32 +25,41 @@ const SignedIn = ({ accountData, logout }) => {
     setSuccessMessage('');
     setButtonText('Sending tokens...');
     e.preventDefault();
-        window.grecaptcha.ready(() => {
-          window.grecaptcha.execute(process.env.REACT_APP_RECAPTCHA, {action: 'submit'})
-          .then(token => {
-            return window.fetch(`/api/get_tokens?token=${token}&account=${accountData.acc}`);
-          })
-          .then(response => response.json())
-          .then(result => {
-            if (result.error) {
-              setButtonText('Get tokens');
-              setErrorMessage(`${result.message}: ${result.error.details[0].message}`);
-            } else {
-              setButtonText('Success!');
-              setSuccessMessage('Please wait a moment for your wallet to update.')
-            }
-          })
-          .catch((response) => {
+    window.grecaptcha.ready(() => {
+      window.grecaptcha
+        .execute(process.env.REACT_APP_RECAPTCHA, { action: 'submit' })
+        .then((token) => {
+          return window.fetch(
+            `/api/get_tokens?token=${token}&account=${accountData.acc}`
+          );
+        })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.error) {
             setButtonText('Get tokens');
-            if (response.message && response.error && response.error.details) {
-              setErrorMessage(`${response.message}: ${response.error.details.message}`)
-            } else {
-              setButtonText('Get tokens');
-              setErrorMessage(`Internal Service Error: Please try again later.`)
-            }
-          });
+            setErrorMessage(
+              `${result.message}: ${result.error.details[0].message}`
+            );
+          } else {
+            setButtonText('Success!');
+            setSuccessMessage(
+              'Please wait a moment for your wallet to update.'
+            );
+          }
+        })
+        .catch((response) => {
+          setButtonText('Get tokens');
+          if (response.message && response.error && response.error.details) {
+            setErrorMessage(
+              `${response.message}: ${response.error.details.message}`
+            );
+          } else {
+            setButtonText('Get tokens');
+            setErrorMessage(`Internal Service Error: Please try again later.`);
+          }
         });
-  }
+    });
+  };
 
   return (
     <Container>
@@ -59,7 +68,7 @@ const SignedIn = ({ accountData, logout }) => {
           <Avatar
             style={{
               backgroundImage:
-                accountData.avatar !== ""
+                accountData.avatar !== ''
                   ? `url('data:image/jpeg;base64,${accountData.avatar}')`
                   : `url('./images/default-avatar.png')`,
             }}
@@ -68,7 +77,7 @@ const SignedIn = ({ accountData, logout }) => {
           <UserName>{accountData.name}</UserName>
         </AvatarContainer>
       </Header>
-      <Coin src='./images/coin.svg' />
+      <Coin src="./images/coin.svg" />
 
       <Title>
         The Foobar token is <Br for="mobile" />
