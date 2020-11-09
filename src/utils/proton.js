@@ -11,15 +11,20 @@ class ProtonSDK {
     this.link = null;
   }
 
+  connect = async (restoreSession=false, showSelector=true) => {
+    const { link, session } = await ConnectWallet({
+      linkOptions: { chainId: this.chainId, endpoints: this.endpoints, restoreSession },
+      transportOptions: { requestAccount: this.requestAccount, backButton: true },
+      selectorOptions: { appName: this.appName, appLogo: Foobar, showSelector }
+    });
+    this.link = link;
+    this.session = session;
+    return session;
+  }
+
   login = async () => {
     try {
-      const { link, session } = await ConnectWallet({
-        linkOptions: { chainId: this.chainId, endpoints: this.endpoints },
-        transportOptions: { requestAccount: this.requestAccount, backButton: true },
-        selectorOptions: { appName: this.appName,appLogo: Foobar}
-      });
-      this.link = link;
-      this.session = session;
+      const session = await this.connect();
       localStorage.setItem('savedUserAuth-foobar', JSON.stringify(session.auth));
       return { auth: session.auth, accountData: session.accountData[0] };
     } catch (e) {
@@ -48,14 +53,7 @@ class ProtonSDK {
     const savedUserAuth = JSON.parse(localStorage.getItem('savedUserAuth-foobar'));
     if (savedUserAuth) {
       try {
-        const { link, session } = await ConnectWallet({
-          linkOptions: { chainId: this.chainId, endpoints: this.endpoints, restoreSession: true},
-          transportOptions: { requestAccount: this.requestAccount },
-          selectorOptions: { appName: this.appName, appLogo: Foobar, showSelector: false}
-        });
-        this.link = link;
-        this.session = session;
-        
+        const session = await this.connect(true, false);
         if (session) {
           return { auth: this.session.auth, accountData: this.session.accountData[0] };
         }
