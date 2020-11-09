@@ -8,7 +8,6 @@ const Top = () => {
   const [permission, setPermission] = useState('');
   const [accountData, setAccountData] = useState({});
 
-
   useEffect(() => {
     async function checkIfLoggedIn() {
       const { auth, accountData } = await ProtonSDK.restoreSession();
@@ -34,14 +33,14 @@ const Top = () => {
     } catch (e) {
       console.error(e);
     }
-  }
+  };
 
   const logout = async () => {
     await ProtonSDK.logout();
     setAuth('');
     setPermission('');
-    setAccountData({}); 
-  }
+    setAccountData({});
+  };
 
   if (auth && permission && accountData) {
     return <SignedIn accountData={accountData} logout={logout} />;
