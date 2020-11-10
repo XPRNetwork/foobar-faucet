@@ -8,17 +8,17 @@ import {
   Coin,
   Header,
   Br,
-} from '../pages/TopStyles';
+} from '../Styles/TopStyles';
 
 const Login = ({ login }) => {
   return (
-    <Container>
+    <Container data-testid="login">
       <Header />
-      <Coin src='./images/coin.svg' />
+      <Coin src="./images/coin.svg" />
 
       <Title>
-        The Foobar token is <Br for="mobile" />
-        the <Br for="desktop" />
+        The Foobar token is <Br styledFor="mobile" />
+        the <Br styledFor="desktop" />
         <FeatureText>demo token</FeatureText> for all Proton Demos{' '}
       </Title>
       <Description>
