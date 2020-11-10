@@ -14,7 +14,7 @@ const Login = ({ login }) => {
   return (
     <Container>
       <Header />
-      <Coin src='./images/coin.svg' />
+      <Coin src="./images/coin.svg" />
 
       <Title>
         The Foobar token is <Br for="mobile" />
