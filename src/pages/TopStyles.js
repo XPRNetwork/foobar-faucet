@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   width: 304px;
-  height: 48px;
+  min-height: 48px;
   border-radius: 10px;
   background-color: #ce2c75;
   border: none;
@@ -23,6 +23,7 @@ export const Button = styled.button`
   line-height: 1.5;
   text-align: center;
   color: #ffffff;
+  margin-bottom: 50px;
 `;
 
 export const Title = styled.h2`
