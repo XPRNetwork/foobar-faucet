@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 105%;
+  height: 110%;
   background-image: radial-gradient(circle at 50% 0, #180f61, #000000 96%);
   display: flex;
   flex-direction: column;
@@ -23,7 +23,6 @@ export const Button = styled.button`
   line-height: 1.5;
   text-align: center;
   color: #ffffff;
-  margin-bottom: 50px;
 `;
 
 export const Title = styled.h2`
