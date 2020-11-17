@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Button,
@@ -17,8 +17,11 @@ import {
 const SignedIn = ({ accountData, logout }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-
   const [buttonText, setButtonText] = useState('Get tokens');
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
 
   const getTokens = (e) => {
     setErrorMessage('');
