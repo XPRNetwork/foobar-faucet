@@ -8,6 +8,10 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   position: absolute;
+
+  @media (max-width: 400px) {
+    height: 140%;
+  }
 `;
 
 export const Button = styled.button`
@@ -140,5 +144,9 @@ export const Message = styled.span`
 
   &.error {
     color: red;
+  }
+
+  @media (max-width: 400px) {
+    width: 300px;
   }
 `;
