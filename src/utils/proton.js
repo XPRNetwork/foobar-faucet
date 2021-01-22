@@ -36,7 +36,6 @@ class ProtonSDK {
     try {
       await this.connect({ restoreSession: false });
       const { auth, accountData } = this.session;
-      localStorage.setItem('savedUserAuth-foobar', JSON.stringify(auth));
       return {
         auth,
         accountData: accountData[0]
@@ -60,26 +59,20 @@ class ProtonSDK {
 
   logout = async () => {
     await this.link.removeSession(this.appName, this.session.auth);
-    localStorage.removeItem('savedUserAuth-foobar');
   };
 
   restoreSession = async () => {
-    const savedUserAuth = JSON.parse(
-      localStorage.getItem('savedUserAuth-foobar')
-    );
-    if (savedUserAuth) {
-      try {
-        await this.connect({ restoreSession: true });
-        if (this.session) {
-          const { auth, accountData } = this.session;
-          return {
-            auth,
-            accountData: accountData[0],
-          };
-        }
-      } catch (e) {
-        return e;
+    try {
+      await this.connect({ restoreSession: true });
+      if (this.session) {
+        const { auth, accountData } = this.session;
+        return {
+          auth,
+          accountData: accountData[0],
+        };
       }
+    } catch (e) {
+      return e;
     }
     return {
       auth: {
