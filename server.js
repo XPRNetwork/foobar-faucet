@@ -3,7 +3,7 @@ const express = require('express');
 const fetch = require('node-fetch');
 const path = require('path');
 const { TextEncoder, TextDecoder } = require('util'); 
-const { Api, JsonRpc, RpcError, JsSignatureProvider } = require('@protonprotocol/protonjs');
+const { Api, JsonRpc, RpcError, JsSignatureProvider } = require('@proton/js');
 const app = express();
 app.use(express.static(path.join(__dirname, 'build')));
 
