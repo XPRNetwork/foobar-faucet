@@ -1,4 +1,4 @@
-import { ConnectWallet } from '@protonprotocol/proton-web-sdk';
+import { ConnectWallet } from '@proton/web-sdk';
 import Foobar from '../coin.svg';
 
 class ProtonSDK {
@@ -12,7 +12,7 @@ class ProtonSDK {
     this.link = null;
   }
 
-  connect = async (restoreSession = false, showSelector = true) => {
+  connect = async ({ restoreSession }) => {
     const { link, session } = await ConnectWallet({
       linkOptions: {
         chainId: this.chainId,
@@ -26,7 +26,6 @@ class ProtonSDK {
       selectorOptions: {
         appName: this.appName,
         appLogo: Foobar,
-        showSelector
       },
     });
     this.link = link;
@@ -35,9 +34,8 @@ class ProtonSDK {
 
   login = async () => {
     try {
-      await this.connect();
+      await this.connect({ restoreSession: false });
       const { auth, accountData } = this.session;
-      localStorage.setItem('savedUserAuth-foobar', JSON.stringify(auth));
       return {
         auth,
         accountData: accountData[0]
@@ -61,26 +59,20 @@ class ProtonSDK {
 
   logout = async () => {
     await this.link.removeSession(this.appName, this.session.auth);
-    localStorage.removeItem('savedUserAuth-foobar');
   };
 
   restoreSession = async () => {
-    const savedUserAuth = JSON.parse(
-      localStorage.getItem('savedUserAuth-foobar')
-    );
-    if (savedUserAuth) {
-      try {
-        await this.connect(true, false);
-        if (this.session) {
-          const { auth, accountData } = this.session;
-          return {
-            auth,
-            accountData: accountData[0],
-          };
-        }
-      } catch (e) {
-        return e;
+    try {
+      await this.connect({ restoreSession: true });
+      if (this.session) {
+        const { auth, accountData } = this.session;
+        return {
+          auth,
+          accountData: accountData[0],
+        };
       }
+    } catch (e) {
+      return e;
     }
     return {
       auth: {
