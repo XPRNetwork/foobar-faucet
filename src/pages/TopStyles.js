@@ -150,3 +150,8 @@ export const Message = styled.span`
     width: 300px;
   }
 `;
+
+export const Error = styled.h2`
+  color: red;
+  font-size: 14px;
+`;

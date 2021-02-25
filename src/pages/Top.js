@@ -4,13 +4,18 @@ import SignedIn from '../components/SignedIn';
 import ProtonSDK from '../utils/proton';
 
 const Top = () => {
+  const [error, setError] = useState('');
   const [auth, setAuth] = useState('');
   const [permission, setPermission] = useState('');
   const [accountData, setAccountData] = useState({});
 
   useEffect(() => {
     async function checkIfLoggedIn() {
-      const { auth, accountData } = await ProtonSDK.restoreSession();
+      const { auth, accountData, error } = await ProtonSDK.restoreSession();
+      if(error){
+        setError(error);
+        return;
+      }
       if (auth.actor && auth.permission) {
         setAuth(auth.actor);
         setPermission(auth.permission);
@@ -45,7 +50,7 @@ const Top = () => {
   if (auth && permission && accountData) {
     return <SignedIn accountData={accountData} logout={logout} />;
   } else {
-    return <Login login={generateLoginRequest} />;
+    return <Login login={generateLoginRequest} error={error} />;
   }
 };
 

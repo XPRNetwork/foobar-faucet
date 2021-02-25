@@ -41,7 +41,7 @@ class ProtonSDK {
         accountData: accountData[0]
       };
     } catch (e) {
-      return e;
+      return { error: e };
     }
   };
 
@@ -53,7 +53,7 @@ class ProtonSDK {
       );
       return result;
     } catch (e) {
-      return e;
+      return { error: e };
     }
   };
 
@@ -72,7 +72,7 @@ class ProtonSDK {
         };
       }
     } catch (e) {
-      return e;
+      return { error: e };
     }
     return {
       auth: {
