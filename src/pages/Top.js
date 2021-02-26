@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Login from '../components/Login';
 import SignedIn from '../components/SignedIn';
 import ProtonSDK from '../utils/proton';
@@ -9,10 +9,23 @@ const Top = () => {
   const [permission, setPermission] = useState('');
   const [accountData, setAccountData] = useState({});
 
+  const usePrevious = (value) => {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
+
+  const prevAmount = usePrevious({ error });
   useEffect(() => {
+    if(prevAmount && prevAmount.error) {
+      setError('');
+    }
+
     async function checkIfLoggedIn() {
       const { auth, accountData, error } = await ProtonSDK.restoreSession();
-      if(error){
+      if (error) {
         setError(error);
         return;
       }
@@ -27,19 +40,19 @@ const Top = () => {
     document.addEventListener('backToSelector', () => {
       generateLoginRequest();
     });
-  }, []);
+  }, [prevAmount]);
 
   const generateLoginRequest = async () => {
-      const { auth, accountData, error } = await ProtonSDK.login();
+    const { auth, accountData, error } = await ProtonSDK.login();
 
-      if(error) {
-        setError(error);
-        return
-      }
+    if (error) {
+      setError(error);
+      return;
+    }
 
-      setAuth(auth.actor);
-      setPermission(auth.permission);
-      setAccountData(accountData);
+    setAuth(auth.actor);
+    setPermission(auth.permission);
+    setAccountData(accountData);
   };
 
   const logout = async () => {
@@ -47,7 +60,6 @@ const Top = () => {
     setAuth('');
     setPermission('');
     setAccountData({});
-    setError('');
   };
 
   if (auth && permission && accountData) {
