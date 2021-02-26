@@ -22,7 +22,9 @@ const Top = () => {
     if(prevError) {
       setError('');
     }
+  }, [prevError]);
 
+  useEffect(() => {
     async function checkIfLoggedIn() {
       const { auth, accountData, error } = await ProtonSDK.restoreSession();
       if (error) {
@@ -40,7 +42,7 @@ const Top = () => {
     document.addEventListener('backToSelector', () => {
       generateLoginRequest();
     });
-  }, [prevError]);
+  }, []);
 
   const generateLoginRequest = async () => {
     const { auth, accountData, error } = await ProtonSDK.login();
