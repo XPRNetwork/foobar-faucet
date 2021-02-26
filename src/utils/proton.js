@@ -41,7 +41,7 @@ class ProtonSDK {
         accountData: accountData[0]
       };
     } catch (e) {
-      return { error: e };
+      return { error: e.message || "An error has occured while logging in"};
     }
   };
 
@@ -53,7 +53,7 @@ class ProtonSDK {
       );
       return result;
     } catch (e) {
-      return { error: e };
+      return { error: e.message || "An error has occured while sending a transaction"};
     }
   };
 
@@ -72,7 +72,7 @@ class ProtonSDK {
         };
       }
     } catch (e) {
-      return { error: e };
+      return { error: e.message || "An error has occured while restoring a session"};
     }
     return {
       auth: {
