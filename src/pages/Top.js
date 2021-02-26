@@ -3,23 +3,23 @@ import Login from '../components/Login';
 import SignedIn from '../components/SignedIn';
 import ProtonSDK from '../utils/proton';
 
+const usePrevious = (value) => {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 const Top = () => {
   const [error, setError] = useState('');
   const [auth, setAuth] = useState('');
   const [permission, setPermission] = useState('');
   const [accountData, setAccountData] = useState({});
 
-  const usePrevious = (value) => {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  }
-
-  const prevAmount = usePrevious({ error });
+  const prevError = usePrevious(error);
   useEffect(() => {
-    if(prevAmount && prevAmount.error) {
+    if(prevError) {
       setError('');
     }
 
@@ -40,7 +40,7 @@ const Top = () => {
     document.addEventListener('backToSelector', () => {
       generateLoginRequest();
     });
-  }, [prevAmount]);
+  }, [prevError]);
 
   const generateLoginRequest = async () => {
     const { auth, accountData, error } = await ProtonSDK.login();
