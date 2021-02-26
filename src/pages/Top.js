@@ -30,14 +30,16 @@ const Top = () => {
   }, []);
 
   const generateLoginRequest = async () => {
-    try {
-      const { auth, accountData } = await ProtonSDK.login();
+      const { auth, accountData, error } = await ProtonSDK.login();
+
+      if(error) {
+        setError(error);
+        return
+      }
+
       setAuth(auth.actor);
       setPermission(auth.permission);
       setAccountData(accountData);
-    } catch (e) {
-      console.error(e);
-    }
   };
 
   const logout = async () => {
@@ -45,6 +47,7 @@ const Top = () => {
     setAuth('');
     setPermission('');
     setAccountData({});
+    setError('');
   };
 
   if (auth && permission && accountData) {
