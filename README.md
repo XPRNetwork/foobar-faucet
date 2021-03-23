@@ -1,5 +1,5 @@
 # Foobar Faucet
-This demo shows the practical usage and integration of the [Proton Web Sdk](https://www.npmjs.com/package/@protonprotocol/proton-web-sdk) with a faucet application.
+This demo shows the practical usage and integration of the [Proton Web Sdk](https://www.npmjs.com/package/@proton/web-sdk) and [Proton JS](https://www.npmjs.com/package/@proton/js) with a faucet application.
 
 This application is made for distributing FOOBAR tokens for using and exploring Proton Demos. You may view the live version of this app at [Foobar Faucet](https://foobar.protonchain.com).
 

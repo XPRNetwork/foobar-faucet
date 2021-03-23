@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Button,
@@ -15,12 +15,14 @@ import {
 } from '../Styles/TopStyles';
 
 const SignedIn = ({ accountData, logout }) => {
-  const [errorMessage, setErrorMessage] = React.useState('');
-  const [successMessage, setSuccessMessage] = React.useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [buttonText, setButtonText] = useState('Get tokens');
 
-  const [buttonText, setButtonText] = React.useState('Get tokens');
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
 
-  /* istanbul ignore next */
   const getTokens = (e) => {
     setErrorMessage('');
     setSuccessMessage('');

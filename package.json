@@ -4,8 +4,8 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
-    "@protonprotocol/proton-web-sdk": "2.6.0",
-    "@protonprotocol/protonjs": "^21.0.23",
+    "@proton/js": "22.0.45",
+    "@proton/web-sdk": "2.7.15",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

@@ -8,9 +8,10 @@ import {
   Coin,
   Header,
   Br,
-} from '../Styles/TopStyles';
+  Error,
+} from '../pages/TopStyles';
 
-const Login = ({ login }) => {
+const Login = ({ login, error }) => {
   return (
     <Container data-testid="login">
       <Header />
@@ -27,6 +28,7 @@ const Login = ({ login }) => {
         hour.
       </Description>
       <Button onClick={login}>Connect Wallet</Button>
+      {error ? <Error>{error}</Error> : null}
     </Container>
   );
 };

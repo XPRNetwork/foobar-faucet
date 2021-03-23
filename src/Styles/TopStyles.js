@@ -1,18 +1,22 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 105%;
+  height: 110%;
   background-image: radial-gradient(circle at 50% 0, #180f61, #000000 96%);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: absolute;
+
+  @media (max-width: 400px) {
+    height: 140%;
+  }
 `;
 
 export const Button = styled.button`
   width: 304px;
-  height: 48px;
+  min-height: 48px;
   border-radius: 10px;
   background-color: #ce2c75;
   border: none;
@@ -141,4 +145,13 @@ export const Message = styled.span`
   &.error {
     color: red;
   }
+
+  @media (max-width: 400px) {
+    width: 300px;
+  }
+`;
+
+export const Error = styled.h2`
+  color: red;
+  font-size: 14px;
 `;
