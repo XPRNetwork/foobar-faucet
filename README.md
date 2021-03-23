@@ -77,7 +77,7 @@ In `server.js` modifications are necessary so that the account sending the token
       data: {
         from: 'foobar',  // replace
         to: req.query.account,
-        quantity: '100.000000 FOOBAR', // update token
+        quantity: '2000.000000 FOOBAR', // update token
         memo: 'Foobar Faucet',
       },
     }]
