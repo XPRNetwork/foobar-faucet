@@ -38,7 +38,11 @@ class ProtonSDK {
       const { auth, accountData } = this.session;
       return {
         auth,
-        accountData: accountData[0]
+        accountData: accountData ? accountData[0] : {
+          name: '',
+          acc: auth.actor,
+          avatar: '',
+        },
       };
     } catch (e) {
       return { error: e.message || "An error has occured while logging in"};
@@ -68,7 +72,11 @@ class ProtonSDK {
         const { auth, accountData } = this.session;
         return {
           auth,
-          accountData: accountData[0],
+          accountData: accountData ? accountData[0] : {
+            name: '',
+            acc: auth.actor,
+            avatar: '',
+          }
         };
       }
     } catch (e) {
