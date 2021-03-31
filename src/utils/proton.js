@@ -38,10 +38,14 @@ class ProtonSDK {
       const { auth, accountData } = this.session;
       return {
         auth,
-        accountData: accountData[0]
+        accountData: accountData ? accountData[0] : {
+          name: '',
+          acc: auth.actor,
+          avatar: '',
+        },
       };
     } catch (e) {
-      return { error: e.message || "An error has occured while logging in"};
+      return { error: e.message || "An error has occurred while logging in"};
     }
   };
 
@@ -53,7 +57,7 @@ class ProtonSDK {
       );
       return result;
     } catch (e) {
-      return { error: e.message || "An error has occured while sending a transaction"};
+      return { error: e.message || "An error has occurred while sending a transaction"};
     }
   };
 
@@ -68,11 +72,15 @@ class ProtonSDK {
         const { auth, accountData } = this.session;
         return {
           auth,
-          accountData: accountData[0],
+          accountData: accountData ? accountData[0] : {
+            name: '',
+            acc: auth.actor,
+            avatar: '',
+          }
         };
       }
     } catch (e) {
-      return { error: e.message || "An error has occured while restoring a session"};
+      return { error: e.message || "An error has occurred while restoring a session"};
     }
     return {
       auth: {
