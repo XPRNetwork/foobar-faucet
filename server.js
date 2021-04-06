@@ -35,7 +35,7 @@ app.get('/api/get_tokens', async (req, res) => {
         }
       });
       const recentActionsResponse = await recentActionsResponseRaw.json();
-      console.log(recentActionsResponse);
+
       for (let i = 0; i < recentActionsResponse.actions.length; i++) {
         const currentAction = recentActionsResponse.actions[i];
         if (currentAction.act.data.from === 'foobar') {
