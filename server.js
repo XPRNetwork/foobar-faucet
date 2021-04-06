@@ -29,13 +29,13 @@ app.get('/api/get_tokens', async (req, res) => {
       now.setHours(now.getHours() - 1);
       const withinOneHour = now.toISOString();
 
-      const recentActionsResponseRaw = await fetch(`https://proton.cryptolions.io/v2/history/get_actions?account=${req.query.account}&after=${withinOneHour}`, {
+      const recentActionsResponseRaw = await fetch(`${process.env.HYPERION_ENDPOINT}/v2/history/get_actions?account=${req.query.account}&after=${withinOneHour}`, {
         headers: {
           'Content-Type': 'application/json',
         }
       });
       const recentActionsResponse = await recentActionsResponseRaw.json();
-      
+      console.log(recentActionsResponse);
       for (let i = 0; i < recentActionsResponse.actions.length; i++) {
         const currentAction = recentActionsResponse.actions[i];
         if (currentAction.act.data.from === 'foobar') {
@@ -93,7 +93,6 @@ app.get('/api/get_tokens', async (req, res) => {
       console.log(JSON.stringify(e.json, null, 2));
       res.status(500).send(e.json);
     } else {
-      console.log('ERROR: ', e);
       res.status(500).send({
         code: 500,
         message: 'Error',

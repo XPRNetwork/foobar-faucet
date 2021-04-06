@@ -59,6 +59,7 @@ jobs:
           --build-arg PRIVATE_KEY="${{ secrets.PRIVATE_KEY }}" \
           --build-arg RECAPTCHA_SECRET="${{ secrets.RECAPTCHA_SECRET }}" \
           --build-arg REACT_APP_RECAPTCHA="${{ secrets.REACT_APP_RECAPTCHA }}" \
+          --build-arg HYPERION_ENDPOINT="${{ secrets.HYPERION_ENDPOINT }}" \
           .
 
     # Push the Docker image to Google Container Registry

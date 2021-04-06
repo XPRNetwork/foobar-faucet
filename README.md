@@ -40,6 +40,8 @@ npm run server
 
 - PRIVATE_KEY: Private key of account that is sending the tokens
 
+- HYPERION_ENDPOINT: Hyperion endpoint needed for checking specific action history within a certain time frame
+
 ### Transact Modifications
 
 In `server.js` modifications are necessary so that the account sending the token matches the PRIVATE_KEY in the `.env`.
