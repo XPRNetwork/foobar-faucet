@@ -29,7 +29,7 @@ app.get('/api/get_tokens', async (req, res) => {
       now.setHours(now.getHours() - 1);
       const withinOneHour = now.toISOString();
 
-      const recentActionsResponseRaw = await fetch(`https://proton.pink.gg/v2/history/get_actions?account=${req.query.account}&after=${withinOneHour}`, {
+      const recentActionsResponseRaw = await fetch(`${process.env.HYPERION_ENDPOINT}/v2/history/get_actions?account=${req.query.account}&after=${withinOneHour}`, {
         headers: {
           'Content-Type': 'application/json',
         }
