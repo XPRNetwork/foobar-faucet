@@ -65,7 +65,7 @@ app.get('/api/get_tokens', async (req, res) => {
           data: {
             from: 'foobar',
             to: req.query.account,
-            quantity: '2000.000000 FOOBAR',
+            quantity: '10.000000 FOOBAR',
             memo: 'Foobar Faucet',
           },
         }]
