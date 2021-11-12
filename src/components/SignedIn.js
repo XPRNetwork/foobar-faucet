@@ -88,7 +88,7 @@ const SignedIn = ({ accountData, logout }) => {
         <FeatureText>demo token</FeatureText> for all Proton Demos{' '}
       </Title>
       <Description>
-        Click to get 2,000 FooBar tokens delivered into your Proton Wallet. These
+        Click to get 10 FooBar tokens delivered into your Proton Wallet. These
         tokens can be used in multiple demo apps. New tokens available every
         hour.
       </Description>
