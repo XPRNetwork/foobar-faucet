@@ -18,8 +18,8 @@ const Login = ({ login, error }) => {
       <Coin src="./images/coin.svg" />
 
       <Title>
-        The Foobar token is <Br for="mobile" />
-        the <Br for="desktop" />
+        The Foobar token is <Br htmlFor="mobile" />
+        the <Br htmlFor="desktop" />
         <FeatureText>demo token</FeatureText> for all Proton Demos{' '}
       </Title>
       <Description>
